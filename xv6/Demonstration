@@ -1,0 +1,41 @@
+Only modified files are uploaded on moodle.
+Some files inside xv6 are modified to implement multilevel queue scheduling. Some files are added.
+
+Modified files are:
+	1) Makefile
+	2) proc.c
+	3) proc.h
+	4) sysproc.c
+	5) syscall.h
+	6) defs.h
+	7) user.h
+	8) usys.s
+	9) syscall.c
+	10)param.h
+	11) exec.c
+
+Added files are:
+	1) create_proc.c
+	2) nice.c
+
+Demonstration of project:
+
+Inside project folder use following command to make xv6 execute.
+	1) make
+	2) make qemu-nox
+
+create processes using following commands:
+	create_proc 2 0.01 &; create_proc 2 0.01 &; create_proc 2 0.01 &;
+
+These commands create child processes which can be used to demonstrate scheduling.
+The priority of child processes created using create_proc is 3.
+While priority of system processes is 0.
+
+use ctrl p to see information about running processes.
+At a time cpu can keep 2 processes running. If we keep pressing ctrl p we can see round robin scheduling of these newly created processes.
+ 
+Using nice, change priority of any one of the newly created child to 0(highest priority)
+	nice pid 0
+
+Now with ctrl p you can observe that the child with priority 0 is always executed.
+And other 2 childs are scheduled in round robin fashion.
